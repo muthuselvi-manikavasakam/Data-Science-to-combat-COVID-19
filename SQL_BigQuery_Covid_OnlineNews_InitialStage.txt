@@ -1,0 +1,40 @@
+#-----Query to get Google Covid-19 Online News articles
+#-----The beginning of COVID-19 outbreak has been different for Ireland, Italy, South Korea & U.S
+
+#-----In Ireland the COVID-19 spread started on 2020-03-13 and the first wave lasted till 2020-03-28
+#-----Below query extracts COVID-19 related online news articles published during this period  
+SELECT DISTINCT DoCTone, ContextualText, Date(DateTime) as Date, Countrycode
+FROM `gdelt-bq.covid19.onlinenewsgeo` 
+WHERE CountryCode = "EI"
+AND DATE(DateTime) BETWEEN "2020-03-13" AND "2020-03-28"
+AND (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%')
+
+UNION ALL
+
+#-----In Italy the COVID-19 spread started on 2020-02-22 and the first wave lasted till 2020-03-08
+#-----Below query extracts COVID-19 related online news articles published during this period  
+SELECT DISTINCT DoCTone, ContextualText, Date(DateTime) as Date, Countrycode
+FROM `gdelt-bq.covid19.onlinenewsgeo` 
+WHERE CountryCode = "IT"
+AND DATE(DateTime) BETWEEN "2020-02-22" AND "2020-03-08"
+AND (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%')
+
+UNION ALL
+
+#-----In South Korea the COVID-19 spread started on 2020-02-20 and the first wave lasted till 2020-03-06
+#-----Below query extracts COVID-19 related online news articles published during this period 
+SELECT DISTINCT DoCTone, ContextualText, Date(DateTime) as Date, Countrycode
+FROM `gdelt-bq.covid19.onlinenewsgeo` 
+WHERE CountryCode = "KS"
+AND DATE(DateTime) BETWEEN "2020-02-20" AND "2020-03-06"
+AND (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%')
+
+UNION ALL
+
+#-----In U.S the COVID-19 spread started on 2020-02-24 and the first wave lasted till 2020-03-10
+#-----Below query extracts COVID-19 related online news articles published during this period 
+SELECT DISTINCT DoCTone, ContextualText, Date(DateTime) as Date, Countrycode
+FROM `gdelt-bq.covid19.onlinenewsgeo` 
+WHERE CountryCode = "US"
+AND DATE(DateTime) BETWEEN "2020-02-24" AND "2020-03-10"
+AND (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%');

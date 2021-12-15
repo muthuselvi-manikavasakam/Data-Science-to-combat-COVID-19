@@ -1,0 +1,40 @@
+#-----Query to get Google Covid-19 Online News articles
+#-----Current stage of COVID-19 outbreak has been different for Ireland, Italy, South Korea & U.S
+
+#-----In Ireland the COVID-19 current wave started on 2020-05-12 and lasted till 2020-05-27
+#-----Below query extracts COVID-19 related online news articles published during this period  
+SELECT DISTINCT DoCTone, ContextualText, Date(DateTime) as Date, Countrycode
+FROM `gdelt-bq.covid19.onlinenewsgeo` 
+WHERE CountryCode = "EI"
+AND DATE(DateTime) BETWEEN "2020-05-12" AND "2020-05-27"
+AND (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%')
+
+UNION ALL
+
+#-----In Italy the COVID-19 current wave started on 2020-04-22 and lasted till 2020-05-07
+#-----Below query extracts COVID-19 related online news articles published during this period  
+SELECT DISTINCT DoCTone, ContextualText, Date(DateTime) as Date, Countrycode
+FROM `gdelt-bq.covid19.onlinenewsgeo` 
+WHERE CountryCode = "IT"
+AND DATE(DateTime) BETWEEN "2020-04-22" AND "2020-05-07"
+AND (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%')
+
+UNION ALL
+
+#-----In South Korea the COVID-19 current wave started on 2020-04-20 and lasted till 2020-05-05
+#-----Below query extracts COVID-19 related online news articles published during this period  
+SELECT DISTINCT DoCTone, ContextualText, Date(DateTime) as Date, Countrycode
+FROM `gdelt-bq.covid19.onlinenewsgeo` 
+WHERE CountryCode = "KS"
+AND DATE(DateTime) BETWEEN "2020-04-20" AND "2020-05-05"
+AND (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%')
+
+UNION ALL
+
+#-----In U.S the COVID-19 current wave started on 2020-04-24 and lasted till 2020-05-09
+#-----Below query extracts COVID-19 related online news articles published during this period  
+SELECT DISTINCT DoCTone, ContextualText, Date(DateTime) as Date, Countrycode
+FROM `gdelt-bq.covid19.onlinenewsgeo` 
+WHERE CountryCode = "US"
+AND DATE(DateTime) BETWEEN "2020-04-24" AND "2020-05-09"
+AND (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%');

@@ -1,0 +1,12 @@
+SELECT HumanName as Country, DATE(DateTime) as Date, #target identification variables
+#----Query to get Google Gdelt Covid-19 online news, count and avg tone by country--
+COUNT(DISTINCT ContextualText) as News_Count, # KPI 1 - Count of unique Covid news grouped by country and day
+AVG(DocTone) as Avg_Tone # KPI 2- Avg of Document Tone grouped grouped by country and day
+FROM `gdelt-bq.covid19.onlinenewsgeo` DF1 #souce table ID from Google Big query
+LEFT JOIN `gdelt-bq.full.crosswalk_geocountrycodetohuman` DF2 # source table ID from GDELT country code vs country name
+ON DF1.CountryCode = DF2.FIPSCC #join on contry code vs Federal Information Processing Standarts country code from DF2
+WHERE (ContextualText like '%covid 19%' OR ContextualText like '%coronavirus%' OR ContextualText like '%sars cov 19%')
+#after review on Gdelt Covid project blog, these terms were identified as covid-19 context related
+AND DateTime BETWEEN '2020-01-22' AND '2020-05-31' # timeframe for analysis
+AND HumanName IS NOT NULL # removing untraceable null values
+GROUP BY Country, Date; #grouping to summarize results
