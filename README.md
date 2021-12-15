@@ -1,0 +1,2 @@
+# Data-Science-to-combat-COVID-19
+This project mainly focuses on researching the impact of social distancing on COVID-19 spread around different countries. Also, how adopting social distance &amp; lockdown at the main epicentre helps to reduce the COVID-19 confirmed cases around the world. And analysing COVID-19 online news across different countries to determine how the virus development has projected through news in different parts of the world. 
